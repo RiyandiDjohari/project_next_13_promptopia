@@ -31,13 +31,12 @@ const Feed = () => {
     post.creator.username.toLowerCase().includes(searchText.toLowerCase())
   ));
 
-  const fetchPosts = async () => {
-    const response = await fetch('/api/prompt');
-    const data = await response.json();
-    setAllPosts(data);
-  }
-
   useEffect(() => { 
+    const fetchPosts = async () => {
+      const response = await fetch('/api/prompt');
+      const data = await response.json();
+      setAllPosts(data);
+    }
     fetchPosts();  
   }, []);
   
