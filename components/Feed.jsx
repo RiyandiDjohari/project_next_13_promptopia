@@ -21,20 +21,20 @@ const Feed = () => {
   const [allPosts, setAllPosts] = useState([]);
   const [loading, setLoading] = useState(true);
 
-  const fetchPosts = async () => {
-    setLoading(true);
-    const response = await fetch("/api/prompt",  { cache: "no-cache" });
-    const data = await response.json();
+  // const fetchPosts = async () => {
+    
+  // };
 
-    setAllPosts(data);
-    setLoading(false);
-  };
-
-  useEffect(() => {
+  useEffect(async() => {
     console.log("Use Effect Running")
   
     try{
-      fetchPosts();
+      setLoading(true);
+      const response = await fetch("/api/prompt",  { cache: "no-cache" });
+      const data = await response.json();
+
+      setAllPosts(data);
+      setLoading(false);
     } catch (error){
       console.log(error);
     }
