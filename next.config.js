@@ -13,7 +13,22 @@ const nextConfig = {
       topLevelAwait: true,
     }
     return config
-  }
+  }, 
+  
+  async headers() {
+    return [
+      {
+        source: '/api/prompt',
+        headers: [
+          {
+            key: 'Cache-Control',
+            value: 'no-store, max-age=0',
+          },
+        ],
+      },
+    ];
+  },
 }
+
 
 module.exports = nextConfig

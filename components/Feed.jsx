@@ -1,6 +1,7 @@
 'use client';
 import { useEffect, useState } from "react"
 import PromptCard from "./PromptCard";
+import { NextResponse } from "next/server";
 
 const PromptCardList = ({data, handleTagClick}) => {
   return(
@@ -19,26 +20,24 @@ const PromptCardList = ({data, handleTagClick}) => {
 const Feed = () => {
   const [searchText, setSearchText] = useState('');
   const [allPosts, setAllPosts] = useState([]);
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(false);
 
-  // const fetchPosts = async () => {
-    
-  // };
+ 
+  const fetchPosts = async () => {
+    setLoading(true);
+    const response = await fetch(`/api/prompt`, {next : {revalidate: 60}});
+    const data = await response.json();
+    console.log({data});
+    setAllPosts(data);
+    setLoading(false);
+  };  
 
-  useEffect(async() => {
+  console.log(allPosts);
+
+
+  useEffect(() => {
     console.log("Use Effect Running")
-  
-    try{
-      setLoading(true);
-      const response = await fetch("/api/prompt",  { cache: "no-cache" });
-      const data = await response.json();
-
-      setAllPosts(data);
-      setLoading(false);
-    } catch (error){
-      console.log(error);
-    }
-
+    fetchPosts();
   }, []);
 
   const handleSearchChange = (e) => {
