@@ -19,20 +19,26 @@ const PromptCardList = ({data, handleTagClick}) => {
 const Feed = () => {
   const [searchText, setSearchText] = useState('');
   const [allPosts, setAllPosts] = useState([]);
+  const [loading, setLoading] = useState(true);
 
   const fetchPosts = async () => {
+    setLoading(true);
     const response = await fetch("/api/prompt",  { cache: "no-cache" });
     const data = await response.json();
 
     setAllPosts(data);
+    setLoading(false);
   };
 
   useEffect(() => {
-    const interval = setInterval(fetchPosts, 60000); // Refetch data every 60 seconds
-    fetchPosts();
-    return () => {
-      clearInterval(interval); // Clean up the interval when the component unmounts
-    };
+    console.log("Use Effect Running")
+  
+    try{
+      fetchPosts();
+    } catch (error){
+      console.log(error);
+    }
+
   }, []);
 
   const handleSearchChange = (e) => {
@@ -59,24 +65,30 @@ const Feed = () => {
           className="search_input peer" 
         />
       </form>
-      {searchText ? (
+      {loading ? (
+        <h1 className="font-montserrat font-bold text-3xl mt-10 orange_gradient space-y-6 py-8">Loading...</h1>
+        ) : (
         <>
-          {
-            filteredPrompts.length == 0 ? (
-              <h1 className="font-montserrat font-bold text-3xl mt-10 orange_gradient space-y-6 py-8">Oops, Prompts Not Found...</h1>
-            ) : (
-              <PromptCardList 
-                data={filteredPrompts}
-                handleTagClick={(value) => setSearchText(value) }
-              />
-            )
-          }
+          {searchText ? (
+            <>
+              {
+                filteredPrompts.length == 0 ? (
+                  <h1 className="font-montserrat font-bold text-3xl mt-10 orange_gradient space-y-6 py-8">Oops, Prompts Not Found...</h1>
+                ) : (
+                  <PromptCardList 
+                    data={filteredPrompts}
+                    handleTagClick={(value) => setSearchText(value) }
+                  />
+                )
+              }
+            </>
+          ) : (
+            <PromptCardList 
+              data={allPosts}
+              handleTagClick={(value) => setSearchText(value) }
+            />
+          )}
         </>
-      ) : (
-        <PromptCardList 
-          data={allPosts}
-          handleTagClick={(value) => setSearchText(value) }
-        />
       )}
     </section>
   )
