@@ -35,7 +35,7 @@ const Nav = () => {
         { 
           session?.user ? (
             <div className="flex gap-3 md:gap-5">
-              <Link href="/create-prompt" className="black_btn">
+              <Link href="/create-prompt" className="orange_btn">
                 Create Post
               </Link>
               <button 
@@ -61,7 +61,7 @@ const Nav = () => {
                 Object.values(providers).map((provider) => (
                   <button
                     type="button"
-                    className="black_btn"
+                    className="orange_btn"
                     onClick={() => signIn(provider.id)}
                     key={provider.name}
                   >
@@ -110,7 +110,7 @@ const Nav = () => {
                       setToggleDropdown(false);
                       signOut();
                     }}
-                    className="mt-5 w-full black_btn"
+                    className="mt-5 w-full orange_btn"
                   >
                     SignOut
                   </button>
@@ -123,7 +123,7 @@ const Nav = () => {
                 Object.values(providers).map((provider) => (
                   <button
                     type="button"
-                    className="black_btn"
+                    className="orange_btn"
                     onClick={() => signIn(provider.id)}
                     key={provider.name}
                   >

@@ -53,10 +53,18 @@ const Feed = () => {
         />
       </form>
       {searchText ? (
-        <PromptCardList 
-          data={filteredPrompts}
-          handleTagClick={(value) => setSearchText(value) }
-        />
+        <>
+          {
+            filteredPrompts.length == 0 ? (
+              <h1 className="font-montserrat font-bold text-3xl mt-10 orange_gradient space-y-6 py-8">Oops, Prompts Not Found...</h1>
+            ) : (
+              <PromptCardList 
+                data={filteredPrompts}
+                handleTagClick={(value) => setSearchText(value) }
+              />
+            )
+          }
+        </>
       ) : (
         <PromptCardList 
           data={allPosts}

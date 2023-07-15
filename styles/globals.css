@@ -1,4 +1,5 @@
 @import url("https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Montserrat+Alternates:wght@300;400;500;600;700;800;900&family=Montserrat:wght@300;400;500;600;700;800;900&family=Mr+Bedfort&display=swap');
 
 @tailwind base;
 @tailwind components;
@@ -77,16 +78,16 @@
   @apply relative z-10 flex justify-center items-center flex-col max-w-7xl mx-auto sm:px-16 px-6;
 }
 
-.black_btn {
-  @apply rounded-full border border-black bg-black py-1.5 px-5 text-white transition-all hover:bg-white hover:text-black text-center text-sm font-inter flex items-center justify-center;
+.orange_btn {
+  @apply rounded-full border border-orange-500 bg-orange-500 py-1.5 px-5 text-white transition-all hover:bg-white hover:text-orange-500 text-center text-sm font-montserrat flex items-center justify-center;
 }
 
 .outline_btn {
-  @apply rounded-full border border-black bg-transparent py-1.5 px-5 text-black transition-all hover:bg-black hover:text-white text-center text-sm font-inter flex items-center justify-center;
+  @apply rounded-full border border-orange-500 bg-transparent py-1.5 px-5 text-orange-500 transition-all hover:bg-orange-500 hover:text-white text-center text-sm font-montserrat flex items-center justify-center;
 }
 
 .head_text {
-  @apply mt-5 text-5xl font-extrabold leading-[1.15] text-black sm:text-6xl;
+  @apply mt-5 text-5xl font-extrabold leading-[1.15] text-black sm:text-6xl font-montserrat;
 }
 
 .orange_gradient {
@@ -98,15 +99,15 @@
 }
 
 .blue_gradient {
-  @apply bg-gradient-to-r from-blue-600 to-cyan-600 bg-clip-text text-transparent;
+  @apply bg-gradient-to-r from-blue-600 via-sky-300 to-cyan-400 bg-clip-text text-transparent;
 }
 
 .desc {
-  @apply mt-5 text-lg text-gray-600 sm:text-xl max-w-2xl;
+  @apply mt-5 font-montserrat text-lg text-gray-600 sm:text-xl max-w-2xl;
 }
 
 .search_input {
-  @apply block w-full rounded-md border border-gray-200 bg-white py-2.5 font-satoshi pl-5 pr-12 text-sm shadow-lg font-medium focus:border-black focus:outline-none focus:ring-0;
+  @apply block w-full rounded-md border border-gray-200 bg-white py-2.5 font-montserratAlternate pl-5 pr-12 text-sm shadow-lg font-medium focus:border-blue-400 focus:outline-none focus:ring-0;
 }
 
 .copy_btn {
@@ -137,7 +138,7 @@
 
 /* Nav Component */
 .logo_text {
-  @apply max-sm:hidden font-satoshi font-semibold text-lg text-black tracking-wide;
+  @apply max-sm:hidden font-montserratAlternate font-bold text-lg text-black tracking-wide;
 }
 
 .dropdown {
@@ -145,7 +146,7 @@
 }
 
 .dropdown_link {
-  @apply text-sm font-inter text-gray-700 hover:text-gray-500 font-medium;
+  @apply text-sm font-montserrat text-gray-700 hover:text-gray-500 font-medium;
 }
 
 /* PromptCard Component */
