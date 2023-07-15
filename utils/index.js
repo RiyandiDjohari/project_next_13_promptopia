@@ -1,4 +1,6 @@
 export async function fetchAllPosts () {
-  const res = await import('../app/api/prompt/route');
-  return await (await res.GET()).json();
+  const res = await fetch(`${process.env.URL}/api/prompt`)
+  const result = await res.json();
+
+  return result;
 }
