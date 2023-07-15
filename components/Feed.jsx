@@ -21,14 +21,18 @@ const Feed = () => {
   const [allPosts, setAllPosts] = useState([]);
 
   const fetchPosts = async () => {
-    const response = await fetch("/api/prompt", { next: { revalidate: 60 } });
+    const response = await fetch("/api/prompt",  { cache: "no-cache" });
     const data = await response.json();
 
     setAllPosts(data);
   };
 
   useEffect(() => {
+    const interval = setInterval(fetchPosts, 60000); // Refetch data every 60 seconds
     fetchPosts();
+    return () => {
+      clearInterval(interval); // Clean up the interval when the component unmounts
+    };
   }, []);
 
   const handleSearchChange = (e) => {
