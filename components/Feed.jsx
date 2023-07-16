@@ -25,9 +25,8 @@ const Feed = () => {
  
   const fetchPosts = async () => {
     setLoading(true);
-    const response = await fetch('/api/prompt?cacheBust=' + Date.now(), {next : {revalidate: 60}});
+    const response = await fetch('/api/prompt');
     const data = await response.json();
-    // console.log({data});
     setAllPosts(data);
     setLoading(false);
   };  
